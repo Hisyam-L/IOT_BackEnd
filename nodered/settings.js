@@ -38,13 +38,14 @@ const auth = {
 };
 
 const pool = new Pool({
-  host: process.env.PGHOST || 'postgres',
+  host: process.env.PGHOST || 'localhost', // <-- ubah 'postgres' menjadi 'localhost'
   port: Number(process.env.PGPORT) || 5432,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   max: 5,
 });
+
 pool.on('error', (e) => console.error('[pg] pool error:', e.message));
 
 module.exports = {

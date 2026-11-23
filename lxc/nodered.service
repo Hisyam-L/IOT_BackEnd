@@ -1,0 +1,20 @@
+[Unit]
+Description=Node-RED for Smart Daylight Balancing System
+After=network.target postgresql.service mosquitto.service
+Wants=postgresql.service mosquitto.service
+
+[Service]
+Type=simple
+User=root
+# Path absolut ke root repo dan direktori nodered
+WorkingDirectory=/home/hisyamlbaihaqi/kuliah/semester56/iot/smart-daylight/nodered
+EnvironmentFile=/home/hisyamlbaihaqi/kuliah/semester56/iot/smart-daylight/.env
+ExecStart=/usr/bin/node-red --userDir /home/hisyamlbaihaqi/kuliah/semester56/iot/smart-daylight/nodered --settings /home/hisyamlbaihaqi/kuliah/semester56/iot/smart-daylight/nodered/settings.js
+Restart=always
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

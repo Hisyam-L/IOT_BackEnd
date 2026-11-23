@@ -266,6 +266,6 @@ describe('Node-RED Flows - Wiring Consistency', () => {
   test('MQTT broker node menggunakan port 1884 (internal)', () => {
     const broker = nodeMap['broker_mqtt'];
     expect(broker.port).toBe('1884');
-    expect(broker.broker).toBe('mosquitto');
+    expect(['mosquitto', 'localhost', '127.0.0.1']).toContain(broker.broker);
   });
 });

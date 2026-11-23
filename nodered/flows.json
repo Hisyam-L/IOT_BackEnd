@@ -10,7 +10,7 @@
     "id": "broker_mqtt",
     "type": "mqtt-broker",
     "name": "Mosquitto",
-    "broker": "mosquitto",
+    "broker": "localhost",
     "port": "1884",
     "clientid": "nodered-daylight",
     "autoConnect": true,
