@@ -1,0 +1,18 @@
+{
+  "name": "smart-daylight-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Test suite untuk Smart Daylight Balancing System",
+  "scripts": {
+    "test": "jest --verbose --forceExit",
+    "test:auth": "jest --verbose --forceExit test/auth.test.js",
+    "test:logic": "jest --verbose --forceExit test/nodered-logic.test.js",
+    "test:ws": "jest --verbose --forceExit test/websocket-node.test.js",
+    "test:infra": "jest --verbose --forceExit test/infrastructure.test.js",
+    "test:firmware": "jest --verbose --forceExit test/firmware-analysis.test.js",
+    "test:db": "jest --verbose --forceExit test/database-schema.test.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
