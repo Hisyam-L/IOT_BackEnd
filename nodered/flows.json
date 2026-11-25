@@ -298,11 +298,12 @@
     ],
     "z": "tab_daylight"
   },
-  {
+   {
     "id": "fn_watch",
     "type": "function",
-    "name": "Deteksi offline 30 dtk",
-    "func": "if (!global.get('ready')) return null;\nconst pool = global.get('pool');\nconst M = [], W = [];\nconst L = global.get('lib')(node, M, W);\nconst { ROOMS, rooms, device, wsm, roomUpdate, deviceUpdate, cmdRoom, cmdDevice, logAct, touch, setOffline } = L;\ntry {\n\n// Pengawas: ESP32 dianggap OFFLINE bila tidak ada data > 30 detik\nconst d = device();\nif (d.device_status === 'ONLINE' && d.last_seen && Date.now() - Date.parse(d.last_seen) > 30000) {\n  setOffline('tidak ada data lebih dari 30 detik');\n}\nreturn [M, W];\n\n} catch (e) { node.error(e); return null; }\n",
+    "z": "tab_daylight",
+    "name": "Deteksi offline 45 dtk + heartbeat",
+    "func": "if (!global.get('ready')) return null;\nconst M = [], W = [];\nconst L = global.get('lib')(node, M, W);\nconst { device, wsm, setOffline } = L;\ntry {\n\nconst d = device();\nconst STALE_MS = 45000;\nif (d.device_status === 'ONLINE' && d.last_seen && Date.now() - Date.parse(d.last_seen) > STALE_MS) {\n  setOffline('tidak ada data lebih dari ' + (STALE_MS / 1000) + ' detik');\n}\n// heartbeat: website selalu menerima status terkini\nW.push(wsm('device.status', { device_status: d.device_status, last_seen: d.last_seen }));\nreturn [M, W];\n\n} catch (e) { node.error(e); return null; }\n",
     "outputs": 2,
     "timeout": 0,
     "noerr": 0,
@@ -318,8 +319,7 @@
       [
         "ws_out"
       ]
-    ],
-    "z": "tab_daylight"
+    ]
   },
   {
     "id": "mqtt_out",
