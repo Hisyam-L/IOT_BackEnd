@@ -116,8 +116,7 @@
     "y": 200,
     "wires": [
       [
-        "debug_mqtt_tel",
-        "sw_tel"
+        "fn_debug_mqtt"
       ]
     ],
     "z": "tab_daylight"
@@ -854,5 +853,24 @@
       []
     ],
     "z": "tab_daylight"
-  }
+  },
+  {
+  "id": "fn_debug_mqtt",
+  "type": "function",
+  "z": "tab_daylight",
+  "name": "DEBUG MQTT TERMINAL",
+  "func": "node.warn('MQTT RX topic=' + msg.topic + ' payload_type=' + (typeof msg.payload) + ' payload=' + JSON.stringify(msg.payload)); return msg;",
+  "outputs": 1,
+  "noerr": 0,
+  "initialize": "",
+  "finalize": "",
+  "libs": [],
+  "x": 390,
+  "y": 200,
+  "wires": [
+    [
+      "sw_tel"
+    ]
+  ]
+}
 ]
