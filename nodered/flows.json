@@ -859,7 +859,7 @@
   "type": "function",
   "z": "tab_daylight",
   "name": "DEBUG MQTT TERMINAL",
-  "func": "node.warn('MQTT RX topic=' + msg.topic + ' payload_type=' + (typeof msg.payload) + ' payload=' + JSON.stringify(msg.payload)); return msg;",
+  "func": "if (typeof msg.payload === 'string') { try { msg.payload = JSON.parse(msg.payload); } catch(e) { node.warn('JSON PARSE ERROR: '+e.message); return null; } } node.warn('MQTT RX topic='+msg.topic+' payload_type='+typeof msg.payload); return msg;",
   "outputs": 1,
   "noerr": 0,
   "initialize": "",
