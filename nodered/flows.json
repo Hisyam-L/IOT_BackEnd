@@ -116,10 +116,28 @@
     "y": 200,
     "wires": [
       [
+        "debug_mqtt_tel",
         "sw_tel"
       ]
     ],
     "z": "tab_daylight"
+  },
+  {
+    "id": "debug_mqtt_tel",
+    "type": "debug",
+    "z": "tab_daylight",
+    "name": "DEBUG MQTT IN",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 390,
+    "y": 140,
+    "wires": []
   },
   {
     "id": "sw_tel",
