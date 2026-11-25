@@ -303,7 +303,7 @@
     "type": "function",
     "z": "tab_daylight",
     "name": "Deteksi offline 45 dtk + heartbeat",
-    "func": "if (!global.get('ready')) return null; const M = [], W = []; const L = global.get('lib')(node, M, W); const { device, wsm, setOffline } = L; try { const d = device(); const STALE_MS = 45000; const age = d.last_seen ? Date.now() - Date.parse(d.last_seen) : null; node.warn({status:d.device_status,last_seen:d.last_seen,age_ms:age}); if (d.device_status === 'ONLINE' && age !== null && (!Number.isFinite(age) || age > STALE_MS)) { setOffline('tidak ada data lebih dari ' + (STALE_MS / 1000) + ' detik'); } W.push(wsm('device.status', {device_status:d.device_status,last_seen:d.last_seen})); return [M, W]; } catch (e) { node.error(e); return null; }",
+    "func": "if (!global.get('ready')) return null; const M = [], W = []; const L = global.get('lib')(node, M, W); const { device, wsm, setOffline } = L; try { const d = device(); const STALE_MS = 45000; const age = d.last_seen ? Date.now() - Date.parse(d.last_seen) : null; node.warn('WATCHDOG status=' + d.device_status + ' last_seen=' + d.last_seen + ' age_ms=' + age); if (d.device_status === 'ONLINE' && age !== null && (!Number.isFinite(age) || age > STALE_MS)) { setOffline('tidak ada data lebih dari ' + (STALE_MS / 1000) + ' detik'); } W.push(wsm('device.status', {device_status:d.device_status,last_seen:d.last_seen})); return [M, W]; } catch (e) { node.error(e); return null; }",
     "outputs": 2,
     "timeout": 0,
     "noerr": 0,
